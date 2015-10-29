@@ -8,6 +8,15 @@ namespace multi_planar_maps {
     MultiPlanarMap::~MultiPlanarMap() {}
 
     void MultiPlanarMap::InitializeWithCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud){
-        *_cloud = cloud;
+        *_cloud_blob = cloud;
+    }
+
+    void MultiPlanarMap::Visualize(){
+        pcl::Visualization::PCLVisualizer p ("Show case");
+        
+        p.addPointCloud<pcl::PointXYZ> (_cloud_blob,"cloud");
+        p.setPointCloudRenderingProperties(pcl::visulization::PCL_VISUALIZATION_POINT_SIZE,1,"cloud");
+
+        p.spin();
     }
 }
